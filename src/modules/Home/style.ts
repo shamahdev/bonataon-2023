@@ -3,12 +3,14 @@ import { css } from '@emotion/react'
 
 export const HomeCss = {
   main: css({
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     padding: '32px 16px 168px',
     gap: '24px',
   }),
   lottery: css({
+    margin: 'auto',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -16,7 +18,6 @@ export const HomeCss = {
     padding: '20px 16px',
     gap: '16px',
     width: '100%',
-    height: 'auto',
     backgroundColor: '#ffffff',
     border: `1px solid ${theme.color.neutral[30]}`,
     boxShadow: theme.boxShadow.elevation.md,

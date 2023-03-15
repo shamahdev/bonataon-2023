@@ -10,6 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Calendar, Location, Personalcard, Whatsapp } from 'iconsax-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast, { Toaster } from 'react-hot-toast'
 import 'swiper/css'
 import * as yup from 'yup'
 import { HomeCss } from './style'
@@ -50,7 +51,6 @@ const Home: NextPageWithLayout = () => {
     setIsLoading(true)
     try {
       const sheet = await readSpreadsheet()
-
       await sheet?.loadCells('F1')
       const lottery = sheet?.getCellByA1('F1').value
 
@@ -63,12 +63,14 @@ const Home: NextPageWithLayout = () => {
       })
       await setLotteryNumber(Number(lottery) + 1)
     } catch (error) {
+      toast.error('Terjadi kesalahan, silahkan coba kembali.')
       console.log(error)
     }
     setIsLoading(false)
   }
   return (
     <>
+      <Toaster />
       {isLoading ? <LoadingOverlay /> : null}
       <main css={HomeCss.main}>
         {lotteryNumber ? (

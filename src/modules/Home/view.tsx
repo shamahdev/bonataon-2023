@@ -3,6 +3,7 @@ import Button from '@/components/common/Button'
 import Container from '@/components/common/Container'
 import Input from '@/components/common/Input'
 import LoadingOverlay from '@/components/common/Loading/LoadingOverlay'
+import { STORAGE_KEY } from '@/lib/config'
 import useLocalStorage from '@/lib/hooks/useLocalStorage'
 import { appendSpreadsheet, readSpreadsheet } from '@/lib/sheet'
 import { NextPageWithLayout } from '@/types/global'
@@ -46,7 +47,7 @@ const Home: NextPageWithLayout = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [lotteryNumber, setLotteryNumber, clearLotteryNumber] = useLocalStorage(
-    'LOTTERY_NUMBER',
+    STORAGE_KEY,
     undefined
   )
 

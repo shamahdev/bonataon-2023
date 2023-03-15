@@ -8,6 +8,7 @@ import { appendSpreadsheet, readSpreadsheet } from '@/lib/sheet'
 import { NextPageWithLayout } from '@/types/global'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Calendar, Location, Personalcard, Whatsapp } from 'iconsax-react'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast'
@@ -41,8 +42,10 @@ const Home: NextPageWithLayout = () => {
     resolver: yupResolver(schema),
   })
 
+  const { query } = useRouter()
+
   const [isLoading, setIsLoading] = useState(false)
-  const [lotteryNumber, setLotteryNumber] = useLocalStorage(
+  const [lotteryNumber, setLotteryNumber, clearLotteryNumber] = useLocalStorage(
     'LOTTERY_NUMBER',
     undefined
   )
@@ -74,10 +77,28 @@ const Home: NextPageWithLayout = () => {
       {isLoading ? <LoadingOverlay /> : null}
       <main css={HomeCss.main}>
         {lotteryNumber ? (
-          <div css={HomeCss.lottery}>
-            <span>Nomor Undian Anda</span>
-            <p>{lotteryNumber}</p>
-          </div>
+          <>
+            <div css={HomeCss.lottery}>
+              <div css={HomeCss.lotteryHeader}>
+                <span>Nomor Undian Anda</span>
+                <p>Harap screenshot nomor undian dibawah</p>
+              </div>
+              <h1>{lotteryNumber}</h1>
+              {query.flag && query.flag[0] === 'admin' ? (
+                <Button
+                  color="Brand"
+                  style={{
+                    backgroundImage: `url("${texture.src}")`,
+                  }}
+                  onClick={() => {
+                    clearLotteryNumber()
+                  }}
+                >
+                  Isi Lagi
+                </Button>
+              ) : null}
+            </div>
+          </>
         ) : (
           <>
             <div css={HomeCss.title}>

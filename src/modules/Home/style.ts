@@ -22,21 +22,39 @@ export const HomeCss = {
     border: `1px solid ${theme.color.neutral[30]}`,
     boxShadow: theme.boxShadow.elevation.md,
     borderRadius: '12px',
-    '& > span': {
-      fontFamily: 'var(--font-satoshi)',
-      fontWeight: 500,
-      fontSize: '14px',
-      lineHeight: '120%',
-      letterSpacing: '-0.02em',
-      color: '#09090C',
-    },
-    '& > p': {
+
+    '& > h1': {
+      padding: '32px 0',
       fontFamily: 'var(--font-satoshi)',
       fontWeight: 700,
       fontSize: '48px',
       lineHeight: '120%',
       letterSpacing: '-0.02em',
       color: '#050406',
+    },
+  }),
+  lotteryHeader: css({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '8px',
+    '& > span': {
+      fontFamily: 'var(--font-satoshi)',
+      fontWeight: 600,
+      fontSize: '18px',
+      lineHeight: '120%',
+      letterSpacing: '-0.02em',
+      color: '#09090C',
+    },
+    '& > p': {
+      fontFamily: 'var(--font-satoshi)',
+      fontWeight: 500,
+      fontSize: '14px',
+      lineHeight: '120%',
+      letterSpacing: '-0.02em',
+      color: '#09090C',
+      opacity: '0.7',
     },
   }),
   title: css({

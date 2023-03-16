@@ -8,6 +8,7 @@ import useLocalStorage from '@/lib/hooks/useLocalStorage'
 import { appendSpreadsheet, readSpreadsheet } from '@/lib/sheet'
 import { NextPageWithLayout } from '@/types/global'
 import { yupResolver } from '@hookform/resolvers/yup'
+import dayjs from 'dayjs'
 import { Calendar, Location, Personalcard, Whatsapp } from 'iconsax-react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -39,6 +40,7 @@ const Home: NextPageWithLayout = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   })
@@ -55,10 +57,12 @@ const Home: NextPageWithLayout = () => {
     setIsLoading(true)
     try {
       const sheet = await readSpreadsheet()
-      await sheet?.loadCells('F1')
-      const lottery = sheet?.getCellByA1('F1').value
+      await sheet?.loadCells('G1')
+      const lottery = sheet?.getCellByA1('G1').value
+      const timestamp = dayjs(Date.now()).format('MM/DD/YY HH:mm:ss')
 
       await appendSpreadsheet({
+        Timestamp: timestamp,
         Nama: data.name,
         Alamat: data.address,
         Whatsapp: data.phone,
@@ -93,6 +97,7 @@ const Home: NextPageWithLayout = () => {
                   }}
                   onClick={() => {
                     clearLotteryNumber()
+                    reset()
                   }}
                 >
                   Isi Lagi

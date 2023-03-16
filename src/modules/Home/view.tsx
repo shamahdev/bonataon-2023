@@ -57,8 +57,8 @@ const Home: NextPageWithLayout = () => {
     setIsLoading(true)
     try {
       const sheet = await readSpreadsheet()
-      await sheet?.loadCells('G1')
-      const lottery = sheet?.getCellByA1('G1').value
+      await sheet?.loadCells('H1')
+      const lottery = sheet?.getCellByA1('H1').value
       const timestamp = dayjs(Date.now()).format('MM/DD/YY HH:mm:ss')
 
       await appendSpreadsheet({
@@ -68,6 +68,7 @@ const Home: NextPageWithLayout = () => {
         Whatsapp: data.phone,
         'Tanggal Lahir': data.date,
         Undian: Number(lottery) + 1,
+        'Undian + Nama': `${Number(lottery) + 1} ${data.name}`,
       })
       await setLotteryNumber(Number(lottery) + 1)
     } catch (error) {

@@ -9,6 +9,20 @@ export const HomeCss = {
     padding: '32px 16px 168px',
     gap: '24px',
   }),
+  lotteryContainer: css({
+    margin: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    gap: '12px',
+    '& > p': {
+      fontFamily: 'var(--font-satoshi)',
+      fontWeight: 500,
+      textAlign: 'center',
+    },
+  }),
   lottery: css({
     margin: 'auto',
     display: 'flex',

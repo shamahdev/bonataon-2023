@@ -83,7 +83,12 @@ const Home: NextPageWithLayout = () => {
       {isLoading ? <LoadingOverlay /> : null}
       <main css={HomeCss.main}>
         {lotteryNumber ? (
-          <>
+          <div css={HomeCss.lotteryContainer}>
+            <p>
+              Terimakasih
+              <br /> atas partisipasi anda dalam kegiatan Bona Taon Naiborhu
+              2023 se-Jabodetabek
+            </p>
             <div css={HomeCss.lottery}>
               <div css={HomeCss.lotteryHeader}>
                 <span>Nomor Undian Anda</span>
@@ -105,7 +110,7 @@ const Home: NextPageWithLayout = () => {
                 </Button>
               ) : null}
             </div>
-          </>
+          </div>
         ) : (
           <>
             <div css={HomeCss.title}>
